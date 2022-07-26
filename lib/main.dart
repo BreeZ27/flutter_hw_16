@@ -79,7 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(_htmlResp),
                             Text(
                               _htmlHeader,
                               textAlign: TextAlign.start,
@@ -88,6 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
+                            const Text('CORS headers: none'),
                             Text(_htmlText),
                           ],
                         ),

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
+Widget customWebView(String lik) => Container();
+
+// static String currentPlatform;
+
 void main() {
   runApp(const MyApp());
 }
@@ -105,6 +109,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     child: const Text('https://flutter.dev'),
                   ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.grey[400],
+                  ),
+                  child: const Text(''),
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(

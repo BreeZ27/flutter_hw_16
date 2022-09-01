@@ -19,6 +19,8 @@ class WebPlatformWebView extends StatelessWidget {
     final id = Random().nextInt.toString();
     // ui.
     // PlatformViewsRegistry
-    return Container(child: HtmlElementView(viewType: id));
+    return Container(
+      child: HtmlElementView(viewType: id),
+    );
   }
 }

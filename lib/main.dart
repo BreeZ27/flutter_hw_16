@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
-Widget customWebView(String lik) => Container();
-
-// static String currentPlatform;
+import 'mock_webView.dart'
+    if (dart.library.io) 'not_web.dart'
+    if (dart.library.html) 'for_web.dart';
 
 void main() {
   runApp(const MyApp());
@@ -127,7 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Text('Загрузить'),
                 ),
               ],
-            )
+            ),
+            webView('https://flutter.dev')
           ],
         ),
       ),

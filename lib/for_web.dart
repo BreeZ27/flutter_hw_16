@@ -1,11 +1,11 @@
 import 'dart:html';
 import 'dart:math';
-import 'dart:ui';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-Widget webView(String lihk) => WebPlatformWebView(
+Widget webView(String lihk) => const WebPlatformWebView(
       link: 'https://flutter.dev/',
     );
 
@@ -17,11 +17,8 @@ class WebPlatformWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = Random().nextInt.toString();
+    // ui.
     // PlatformViewsRegistry
-    return Container(
-      child: HtmlElementView(
-        viewType: id,
-      ),
-    );
+    return Container(child: HtmlElementView(viewType: id));
   }
 }

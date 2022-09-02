@@ -17,10 +17,9 @@ class WebPlatformWebView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = Random().nextInt.toString();
-    // ui.
-    // PlatformViewsRegistry
-    return Container(
-      child: HtmlElementView(viewType: id),
-    );
+    ui.platformViewRegistry
+        .registerViewFactory(id, (int viewId) => IFrameElement()..src = link);
+
+    return Container(child: HtmlElementView(viewType: id));
   }
 }

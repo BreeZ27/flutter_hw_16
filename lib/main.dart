@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hw_16/app_platform.dart';
 import 'package:http/http.dart' as http;
 
-import 'mock_webView.dart'
+import 'mock_web_view.dart'
     if (dart.library.io) 'not_web.dart'
     if (dart.library.html) 'for_web.dart';
 
@@ -61,44 +62,45 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            _htmlText == ''
-                ? const Expanded(
-                    child: Center(
-                      child: Text('Страница не загружена'),
-                    ),
-                  )
-                : Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.only(bottom: 8),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _htmlHeader,
-                              textAlign: TextAlign.start,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            const Text('CORS headers: none'),
-                            Text(_htmlText),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-            Row(
+      body: Column(
+        children: [
+          Expanded(child: webView('https://flutter.dev')),
+          // _htmlText == ''
+          //     ? const Expanded(
+          //         child: Center(
+          //           child: Text('Страница не загружена'),
+          //         ),
+          //       )
+          //     : Expanded(
+          //         child: Container(
+          //           decoration: BoxDecoration(
+          //             color: Colors.grey[200],
+          //             borderRadius: BorderRadius.circular(10),
+          //           ),
+          //           padding: const EdgeInsets.all(10),
+          //           margin: const EdgeInsets.only(bottom: 8),
+          //           child: SingleChildScrollView(
+          //             child: Column(
+          //               crossAxisAlignment: CrossAxisAlignment.start,
+          //               children: [
+          //                 Text(
+          //                   _htmlHeader,
+          //                   textAlign: TextAlign.start,
+          //                   style: const TextStyle(
+          //                     fontSize: 16,
+          //                     fontWeight: FontWeight.w500,
+          //                   ),
+          //                 ),
+          //                 const Text('CORS headers: none'),
+          //                 Text(_htmlText),
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
               children: [
                 Expanded(
                   child: Container(
@@ -117,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.grey[400],
                   ),
-                  child: const Text(''),
+                  child: Text('Work on ${AppPlatform.platform.name}'),
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(
@@ -128,9 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            webView('https://flutter.dev')
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.4
   webview_flutter: ^3.0.4
   url_launcher: ^6.1.5
+  fluro: ^2.0.3
 
 dev_dependencies:
   flutter_test:

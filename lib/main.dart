@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hw_16/app_platform.dart';
+import 'package:flutter_hw_16/fluro_router.dart';
+import 'package:flutter_hw_16/people.dart';
 import 'package:http/http.dart' as http;
 
 import 'mock_web_view.dart'
@@ -8,6 +10,7 @@ import 'mock_web_view.dart'
     if (dart.library.html) 'for_web.dart';
 
 void main() {
+  MyRouter.setupRouter();
   runApp(const MyApp());
 }
 
@@ -21,15 +24,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      onGenerateRoute: MyRouter.router.generator,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
+  const MyHomePage({Key? key}) : super(key: key);
+  static const String routeName = '/';
+  final String title = 'Home';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -62,6 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer: const MyDrawer(),
       body: Column(
         children: [
           Expanded(child: webView('https://flutter.dev')),
@@ -131,6 +137,32 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          ListTile(
+            title: const Text('Home'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, MyHomePage.routeName);
+            },
+          ),
+          ListTile(
+            title: const Text('People'),
+            onTap: () {
+              Navigator.pushReplacementNamed(context, PeoplePage.routeName);
+            },
+          )
         ],
       ),
     );

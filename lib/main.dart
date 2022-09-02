@@ -150,6 +150,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           ListTile(
             title: const Text('Home'),

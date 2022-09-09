@@ -152,18 +152,27 @@ class MyDrawer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Spacer(),
+          const FlutterLogo(
+            size: 50,
+          ),
+          const Spacer(),
           ListTile(
             title: const Text('Home'),
             onTap: () {
               Navigator.pushNamed(context, MyHomePage.routeName);
             },
           ),
+          const Divider(
+            thickness: 1,
+          ),
           ListTile(
             title: const Text('People'),
             onTap: () {
               Navigator.pushNamed(context, PeoplePage.routeName);
             },
-          )
+          ),
+          const Spacer(),
         ],
       ),
     );

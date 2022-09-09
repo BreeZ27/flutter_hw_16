@@ -155,13 +155,13 @@ class MyDrawer extends StatelessWidget {
           ListTile(
             title: const Text('Home'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, MyHomePage.routeName);
+              Navigator.pushNamed(context, MyHomePage.routeName);
             },
           ),
           ListTile(
             title: const Text('People'),
             onTap: () {
-              Navigator.pushReplacementNamed(context, PeoplePage.routeName);
+              Navigator.pushNamed(context, PeoplePage.routeName);
             },
           )
         ],

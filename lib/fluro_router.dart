@@ -13,7 +13,7 @@ class MyRouter {
 
   static final Handler _peopleHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) {
-    return PeoplePage();
+    return const PeoplePage();
   });
 
   static void setupRouter() {

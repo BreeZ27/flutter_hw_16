@@ -65,42 +65,95 @@ class _PeoplePageState extends State<PeoplePage> {
             const Expanded(child: MyDrawer()),
             Expanded(
               flex: 3,
-              child: GridView.builder(
-                shrinkWrap: false,
-                itemCount: people.length,
-                padding: const EdgeInsets.all(8),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    // childAspectRatio: 4,
-                    mainAxisSpacing: 8,
-                    crossAxisSpacing: 8),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      print('Popover was popped!');
-                      // showPopover(
-                      //   context: context,
-                      //   // transitionDuration: const Duration(milliseconds: 150),
-                      //   bodyBuilder: (context) => Column(
-                      //     children: [
-                      //       // Text('data'),
-                      //     ],
-                      //   ),
-                      //   // onPop: () => print('Popover was popped!'),
-                      //   // direction: PopoverDirection.top,
-                      //   // width: 200,
-                      //   // height: 150,
-                      //   // arrowHeight: 15,
-                      //   // arrowWidth: 30,
-                      // );
-                    },
-                    child: BigPersonCard(
-                      name: people.values.toList()[index]['name'],
-                      surname: people.values.toList()[index]['surname'],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ...people.values.map(
+                      (e) => GestureDetector(
+                        onTap: () {
+                          // print('Popover was popped!');
+                          showPopover(
+                            context: context,
+                            transitionDuration:
+                                const Duration(milliseconds: 150),
+                            bodyBuilder: (context) => Container(
+                              decoration: BoxDecoration(color: Colors.amber),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: 20,
+                                    child: const Center(child: Text('Entry A')),
+                                  ),
+                                  const Divider(),
+                                  Container(
+                                    height: 20,
+                                    child: const Center(child: Text('Entry B')),
+                                  ),
+                                  const Divider(),
+                                  Container(
+                                    height: 20,
+                                    child: const Center(child: Text('Entry C')),
+                                  )
+                                ],
+                              ),
+                            ),
+                            onPop: () => print('Popover was popped!'),
+                            // direction: PopoverDirection.top,
+                            width: 200,
+                            height: 150,
+                            arrowHeight: 15,
+                            arrowWidth: 30,
+                          );
+                        },
+                        child: BigPersonCard(
+                          name: e['name'],
+                          surname: e['surname'],
+                        ),
+                      ),
                     ),
-                  );
-                },
+                  ],
+                ),
               ),
+              // child: GridView.builder(
+              //   shrinkWrap: false,
+              //   itemCount: people.length,
+              //   padding: const EdgeInsets.all(8),
+              //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //       crossAxisCount: 2,
+              //       // childAspectRatio: 4,
+              //       mainAxisSpacing: 8,
+              //       crossAxisSpacing: 8),
+              //   itemBuilder: (context, index) {
+              //     return GestureDetector(
+              //       onTap: () {
+              //         print('Popover was popped!');
+              //         // showPopover(
+              //         //   context: context,
+              //         //   // transitionDuration: const Duration(milliseconds: 150),
+              //         //   bodyBuilder: (context) => Column(
+              //         //     children: [
+              //         //       // Text('data'),
+              //         //     ],
+              //         //   ),
+              //         //   // onPop: () => print('Popover was popped!'),
+              //         //   // direction: PopoverDirection.top,
+              //         //   // width: 200,
+              //         //   // height: 150,
+              //         //   // arrowHeight: 15,
+              //         //   // arrowWidth: 30,
+              //         // );
+              //       },
+              //       child: BigPersonCard(
+              //         name: people.values.toList()[index]['name'],
+              //         surname: people.values.toList()[index]['surname'],
+              //       ),
+              //     );
+              //   },
+              // ),
             ),
           ],
         )),
@@ -173,8 +226,9 @@ class BigPersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(minHeight: 250),
-      width: double.infinity,
+      height: 250,
+      constraints: const BoxConstraints(maxWidth: 250),
+      // width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.blue[100],
         borderRadius: BorderRadius.circular(8),

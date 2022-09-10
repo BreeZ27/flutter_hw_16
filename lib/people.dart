@@ -77,19 +77,22 @@ class _PeoplePageState extends State<PeoplePage> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      showPopover(
-                        context: context,
-                        transitionDuration: const Duration(milliseconds: 150),
-                        bodyBuilder: (context) => Column(
-                          children: [Text('data')],
-                        ),
-                        onPop: () => print('Popover was popped!'),
-                        direction: PopoverDirection.top,
-                        width: 200,
-                        height: 150,
-                        arrowHeight: 15,
-                        arrowWidth: 30,
-                      );
+                      print('Popover was popped!');
+                      // showPopover(
+                      //   context: context,
+                      //   // transitionDuration: const Duration(milliseconds: 150),
+                      //   bodyBuilder: (context) => Column(
+                      //     children: [
+                      //       // Text('data'),
+                      //     ],
+                      //   ),
+                      //   // onPop: () => print('Popover was popped!'),
+                      //   // direction: PopoverDirection.top,
+                      //   // width: 200,
+                      //   // height: 150,
+                      //   // arrowHeight: 15,
+                      //   // arrowWidth: 30,
+                      // );
                     },
                     child: BigPersonCard(
                       name: people.values.toList()[index]['name'],

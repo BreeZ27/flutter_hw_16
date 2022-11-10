@@ -4,6 +4,8 @@ import 'package:popover/popover.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hw_16/main.dart';
 
+List<String> menu = ['Профиль', 'Друзья', 'Отчёт'];
+
 class PeoplePage extends StatefulWidget {
   const PeoplePage({Key? key}) : super(key: key);
   static const String routeName = '/people';
@@ -76,37 +78,42 @@ class _PeoplePageState extends State<PeoplePage> {
                       (e) => Builder(builder: (context) {
                         return GestureDetector(
                           onTap: () {
-                            // print('Popover was popped!');
                             showPopover(
                               context: context,
                               transitionDuration:
                                   const Duration(milliseconds: 150),
                               bodyBuilder: (context) => Container(
-                                decoration: BoxDecoration(color: Colors.amber),
+                                decoration:
+                                    const BoxDecoration(color: Colors.amber),
                                 child: Column(
                                   children: [
-                                    Container(
-                                      height: 20,
-                                      child:
-                                          const Center(child: Text('Entry A')),
-                                    ),
+                                    const Spacer(),
                                     const Divider(),
-                                    Container(
-                                      height: 20,
-                                      child:
-                                          const Center(child: Text('Entry B')),
+                                    ...menu.map(
+                                      (k) {
+                                        return Column(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: SizedBox(
+                                                height: 20,
+                                                child: Center(
+                                                  child: Text(k),
+                                                ),
+                                              ),
+                                            ),
+                                            const Divider(),
+                                          ],
+                                        );
+                                      },
                                     ),
-                                    const Divider(),
-                                    Container(
-                                      height: 20,
-                                      child:
-                                          const Center(child: Text('Entry C')),
-                                    )
+                                    const Spacer()
                                   ],
                                 ),
                               ),
                               onPop: () => print('Popover was popped!'),
-                              // direction: PopoverDirection.top,
                               width: 200,
                               height: 150,
                               arrowHeight: 15,
@@ -123,42 +130,6 @@ class _PeoplePageState extends State<PeoplePage> {
                   ],
                 ),
               ),
-              // child: GridView.builder(
-              //   shrinkWrap: false,
-              //   itemCount: people.length,
-              //   padding: const EdgeInsets.all(8),
-              //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              //       crossAxisCount: 2,
-              //       // childAspectRatio: 4,
-              //       mainAxisSpacing: 8,
-              //       crossAxisSpacing: 8),
-              //   itemBuilder: (context, index) {
-              //     return GestureDetector(
-              //       onTap: () {
-              //         print('Popover was popped!');
-              //         // showPopover(
-              //         //   context: context,
-              //         //   // transitionDuration: const Duration(milliseconds: 150),
-              //         //   bodyBuilder: (context) => Column(
-              //         //     children: [
-              //         //       // Text('data'),
-              //         //     ],
-              //         //   ),
-              //         //   // onPop: () => print('Popover was popped!'),
-              //         //   // direction: PopoverDirection.top,
-              //         //   // width: 200,
-              //         //   // height: 150,
-              //         //   // arrowHeight: 15,
-              //         //   // arrowWidth: 30,
-              //         // );
-              //       },
-              //       child: BigPersonCard(
-              //         name: people.values.toList()[index]['name'],
-              //         surname: people.values.toList()[index]['surname'],
-              //       ),
-              //     );
-              //   },
-              // ),
             ),
           ],
         )),
@@ -285,24 +256,20 @@ class ActionsMenu extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       child: Column(
         children: [
-          ListTile(
-            title: const Text('Профиль'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
           const Divider(thickness: 1),
-          ListTile(
-            title: const Text('Друзья'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          const Divider(thickness: 1),
-          ListTile(
-            title: const Text('Отчёт'),
-            onTap: () {
-              Navigator.pop(context);
+          ...menu.map(
+            (e) {
+              return Column(
+                children: [
+                  ListTile(
+                    title: Text(e),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  const Divider(thickness: 1),
+                ],
+              );
             },
           )
         ],

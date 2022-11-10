@@ -73,47 +73,52 @@ class _PeoplePageState extends State<PeoplePage> {
                   runSpacing: 8,
                   children: [
                     ...people.values.map(
-                      (e) => GestureDetector(
-                        onTap: () {
-                          // print('Popover was popped!');
-                          showPopover(
-                            context: context,
-                            transitionDuration:
-                                const Duration(milliseconds: 150),
-                            bodyBuilder: (context) => Container(
-                              decoration: BoxDecoration(color: Colors.amber),
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 20,
-                                    child: const Center(child: Text('Entry A')),
-                                  ),
-                                  const Divider(),
-                                  Container(
-                                    height: 20,
-                                    child: const Center(child: Text('Entry B')),
-                                  ),
-                                  const Divider(),
-                                  Container(
-                                    height: 20,
-                                    child: const Center(child: Text('Entry C')),
-                                  )
-                                ],
+                      (e) => Builder(builder: (context) {
+                        return GestureDetector(
+                          onTap: () {
+                            // print('Popover was popped!');
+                            showPopover(
+                              context: context,
+                              transitionDuration:
+                                  const Duration(milliseconds: 150),
+                              bodyBuilder: (context) => Container(
+                                decoration: BoxDecoration(color: Colors.amber),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 20,
+                                      child:
+                                          const Center(child: Text('Entry A')),
+                                    ),
+                                    const Divider(),
+                                    Container(
+                                      height: 20,
+                                      child:
+                                          const Center(child: Text('Entry B')),
+                                    ),
+                                    const Divider(),
+                                    Container(
+                                      height: 20,
+                                      child:
+                                          const Center(child: Text('Entry C')),
+                                    )
+                                  ],
+                                ),
                               ),
-                            ),
-                            onPop: () => print('Popover was popped!'),
-                            // direction: PopoverDirection.top,
-                            width: 200,
-                            height: 150,
-                            arrowHeight: 15,
-                            arrowWidth: 30,
-                          );
-                        },
-                        child: BigPersonCard(
-                          name: e['name'],
-                          surname: e['surname'],
-                        ),
-                      ),
+                              onPop: () => print('Popover was popped!'),
+                              // direction: PopoverDirection.top,
+                              width: 200,
+                              height: 150,
+                              arrowHeight: 15,
+                              arrowWidth: 30,
+                            );
+                          },
+                          child: BigPersonCard(
+                            name: e['name'],
+                            surname: e['surname'],
+                          ),
+                        );
+                      }),
                     ),
                   ],
                 ),
